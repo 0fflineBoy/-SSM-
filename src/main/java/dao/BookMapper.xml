@@ -25,4 +25,15 @@
     <select id="queryAllBook" resultType="Books">
       select * from ssmbuild.books
    </select>
+
+    <select id="queryBookByName" resultType="Books">
+        select *
+        from ssmbuild.books
+        <where>
+        <if test="bookName!=null || bookName!=''">
+            <bind name="BindbookName" value="'%'+bookName+'%'"/>
+            bookName like #{BindbookName}
+        </if>
+        </where>
+    </select>
 </mapper>
